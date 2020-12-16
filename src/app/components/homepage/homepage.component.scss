@@ -1,11 +1,17 @@
 .title {
     display: flex;
-    margin: 12px auto;
+    margin: 12px auto 40px;
     justify-content: center;
+}
+
+.locations {
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .weather-container {
     display: block;
+    margin: 20px auto;
     border-radius: 10px;
     width: 200px;
     height: 220px;
