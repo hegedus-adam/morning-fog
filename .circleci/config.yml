@@ -4,4 +4,25 @@ orbs:
 workflows:
   node-tests:
     jobs:
-      - node/test
+      - lint
+      - test
+      - build
+jobs:
+  lint:
+    executor: node/default
+    steps:
+      - checkout
+      - node/install-packages
+      - run: npm run lint
+  test:
+    executor: node/default
+    steps:
+      - checkout
+      - node/install-packages
+      - run: npm run test
+  build:
+    executor: node/default
+    steps:
+      - checkout
+      - node/install-packages
+      - run: npm run build
