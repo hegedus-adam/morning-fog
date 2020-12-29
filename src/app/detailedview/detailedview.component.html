@@ -1,0 +1,49 @@
+<div class="card bg-secondary mb-3 detail-card" *ngIf="this.doRender">
+    <div class="card-header"><h5 class="card-title" style="color: white;">Weather forecast</h5></div>
+    <div class="card-body">
+        <button type="button" class="btn btn-danger" (click)="closeDetails()">Close details</button>
+      <hr/>
+      <div class="row">
+        <div class="col-4 cld">
+          <div class="card cd">
+            <div class="card-header">
+              <b>Tomorrow</b>
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">Temperature: <b>{{forecast.tomorrow.temperature}}</b> °C</li>
+              <li class="list-group-item">Feels Like: <b>{{forecast.tomorrow.feelsLike}}</b> °C</li>
+              <li class="list-group-item">Humidity: <b>{{forecast.tomorrow.humidity}}</b> %</li>
+            </ul>
+          </div>
+        </div>
+  
+        <div class="col-4 cld">
+          <div class="card cd">
+            <div class="card-header">
+              <b>Day After Tomorrow</b>
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">Temperature: <b>{{forecast.dayAfter.temperature}}</b> °C</li>
+              <li class="list-group-item">Feels Like: <b>{{forecast.dayAfter.feelsLike}}</b> °C</li>
+              <li class="list-group-item">Humidity: <b>{{forecast.dayAfter.humidity}}</b> %</li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="col-4 cld">
+          <div class="card cd">
+            <div class="card-header">
+              <b>Two Days Later</b>
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">Temperature: <b>{{forecast.twoDayAfter.temperature}}</b> °C</li>
+              <li class="list-group-item">Feels Like: <b>{{forecast.twoDayAfter.feelsLike}}</b> °C</li>
+              <li class="list-group-item">Humidity: <b>{{forecast.twoDayAfter.humidity}}</b> %</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+</div>
+

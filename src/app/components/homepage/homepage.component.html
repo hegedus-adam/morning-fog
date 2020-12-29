@@ -1,7 +1,5 @@
-<h1 class="title">Weather Application</h1>
-
 <div class="locations">
-    <div *ngFor="let weatherData of weatherDataArray" class="weather-container">
+    <div *ngFor="let weatherData of weatherDataArray" class="weather-container" id="{{weatherData.name}}_id" (click)="getDetails(weatherData, $event)">
         <div *ngIf="weatherData.isDay" class="weather-widget-row">
             <i class="fas fa-3x fa-sun sun"></i>
         </div>
@@ -18,4 +16,8 @@
         <div class="weather-widget-row">Humidity: {{weatherData.main.humidity}}%</div>
         <div class="weather-widget-row"></div>
     </div>
+</div>
+
+<div class="details" #details>
+    <app-detailedview [details] = "this.coordinatesToPass" (selectedFrameEmitter)="selectFrame($event)"></app-detailedview>
 </div>
