@@ -22,6 +22,7 @@ export class WeatherDataService {
   importData
 
   setWeatherData(dataArray) {
+    
     dataArray.list.forEach((data: Location) => {
       const weatherData = data;
       let sunsetTime = new Date(weatherData.sys.sunset * 1000);

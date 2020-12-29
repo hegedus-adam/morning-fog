@@ -5,5 +5,7 @@ import { Component } from "@angular/core";
     templateUrl: './navigation.component.html'
 })
 export class NavigationComponent{
-
+    reloadToPreventBugging(){
+        window.location.href = '/home';
+    }
 }

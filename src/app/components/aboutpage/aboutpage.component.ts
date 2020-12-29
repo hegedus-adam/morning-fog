@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
 export class AboutpageComponent{
 
     ngOnInit(){
-
+        //window.location.reload();
     }
 
 } 

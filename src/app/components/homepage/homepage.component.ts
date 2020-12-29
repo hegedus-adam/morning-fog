@@ -21,12 +21,11 @@ export class HomepageComponent implements OnInit {
   ngOnInit(): void {
     this.weatherDataArray = this.weatherDataService.getWeatherData(this.locationIDs);
     this.detailedWeatherDataArray = this.detailedWeatherData.getWeatherDetails(this.locationIDs)
-    //console.log(this.weatherDataArray);
   }
   
   async getDetails(weatherDataID){
     //this.detailedWeatherDataArray = [];
-    console.log(`one card is clicked with ${weatherDataID}`);
+    //console.log(`one card is clicked with ${weatherDataID}`);
     //this.detailedWeatherDataArray = this.detailedWeatherData.getWeatherDetails(weatherDataID);
 
     let showDetailOf = this.detailedWeatherDataArray.filter(location=>location.id === weatherDataID)
