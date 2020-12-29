@@ -11,7 +11,7 @@ export class WeatherDataService {
   constructor() { }
 
   getWeatherData(locationIDs): Location[] {
-    console.log('getting data');
+    //console.log('getting data');
     fetch(`https://api.openweathermap.org/data/2.5/group?id=${locationIDs}&appid=ab43f925584c3f13153382ccb869175d`)
       .then(response => response.json())
       .then(data => { this.setWeatherData(data); })
@@ -34,6 +34,7 @@ export class WeatherDataService {
       weatherData.temp_feels_like = (weatherData.main.feels_like - 273.15).toFixed(0);
 
       this.weatherDataArray.push(weatherData);
+
     });
   }
 }
