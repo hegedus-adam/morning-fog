@@ -4,9 +4,9 @@ import { AboutpageComponent } from './components/aboutpage/aboutpage.component';
 import { HomepageComponent } from './components/homepage/homepage.component';
 
 export const routes: Routes = [
-  { path: 'home', component: HomepageComponent},
-  { path: 'about', component: AboutpageComponent},
-  { path: '', redirectTo:'/home', pathMatch: 'full'}
+  { path: 'home', component: HomepageComponent },
+  { path: 'about', component: AboutpageComponent },
+  { path: '', redirectTo: '/home', pathMatch: 'full' }
 ];
 
 @NgModule({
