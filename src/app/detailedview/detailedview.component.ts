@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { DetailedWeatherService } from '../services/detailed-weather-data.service';
 import { Location } from '../interfaces/location';
+import { coordinates } from '../interfaces/coordinates';
 
 @Component({
   selector: 'app-detailedview',
@@ -9,37 +10,57 @@ import { Location } from '../interfaces/location';
   styleUrls: ['./detailedview.component.scss']
 })
 export class DetailedviewComponent implements OnInit {
-  private _details: number;
+  private _coordinates: coordinates;
   detailedWeather:object = {};
   detailedWeatherDataArray: Location[] = [];
-  locationIDs = [3054638, 721472, 715429, 4119617];
+  forecastDataInformation = [];
+  //locationIDs = [3054638, 721472, 715429, 4119617];
+  locationCoords = [
+    {longitude: 19.08, latitude: 47.5, city: 'Budapest'}, 
+    {longitude: 21.63, latitude: 47.53, city: 'Debrecen'}, 
+    {longitude: 20.15, latitude: 46.25, city: 'Szeged'}, 
+    {longitude: -93.25, latitude: 35.33, city: 'London'}
+  ]
   doRender:boolean;
 
   @Input() 
   get details() {
-    return this._details
+    return this._coordinates
   }
-  set details(value: number) {
-    this._details = value;
+  set details(value: coordinates) {
+    this._coordinates = value;
     this.onIDChange(value);
   }
   
 
-  constructor( private detailedWeatherData: DetailedWeatherService ) { }
+  constructor( private getForecast: DetailedWeatherService ) { }
 
   ngOnInit(): void {
-    this.detailedWeatherDataArray = this.detailedWeatherData.getWeatherDetails(this.locationIDs);
+    this.locationCoords.forEach(city=>{
+      console.log(city);
+      
+    })
+
+    
     this.doRender = false;
   }
 
-  onIDChange(weatherDataID: number){
+  async onIDChange(newCoordinates: coordinates){
+    console.log(newCoordinates);
 
+    console.log(this.forecastDataInformation);
+
+    //console.log(newCoordinates);
+    //this.detailedWeatherDataArray = this.getForecast.getForecastDetails(newCoordinates);
+    //console.log(this.detailedWeatherDataArray)
+    /*
     if(this.locationIDs.includes(weatherDataID)){
       let showDetailOf = this.detailedWeatherDataArray.filter(location => location.id === weatherDataID)
       let details = showDetailOf[0];
       this.detailedWeather = details;
       this.doRender = true;
     }
+    */
   }
 
   closeDetails(){
