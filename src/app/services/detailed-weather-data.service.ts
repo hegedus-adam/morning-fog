@@ -10,17 +10,18 @@ export class DetailedWeatherService {
     //detailedWeatherDataArray: Location[] = [];
     forecastDataInformation = [];
 
-    getForecastDetails(coordinates: coordinates) {
+    async getForecastDetails(coordinates: coordinates) {
         console.log('getting data');
         const api_key:string = 'ab43f925584c3f13153382ccb869175d';
         const part = '';
         this.forecastDataInformation = [];
-        //https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude={part}&appid={API key}
-
-        fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.latitude}&lon=${coordinates.longitude}&exclude=${part}&appid=${api_key}`)
-            .then(response => response.json())
-            .then(data => { this.setDetailedWeatherData(data); })
-        return this.forecastDataInformation;
+        
+        const response = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.latitude}&lon=${coordinates.longitude}&exclude=${part}&appid=${api_key}`)
+        const data = await response.json();
+            //.then(response => response.json())
+            //.then(data => { this.setDetailedWeatherData(data); })
+        //return this.forecastDataInformation;
+        return data;
     }
 
     setDetailedWeatherData(dataArray) {

@@ -1,14 +1,43 @@
-<div class="card text-white bg-secondary mb-3 detail-card" *ngIf="this.doRender">
-    <div class="card-header"><h5 class="card-title">Detailed information about {{detailedWeather.name}}</h5></div>
+<div class="card bg-secondary mb-3 detail-card" *ngIf="this.doRender">
+    <div class="card-header"><h5 class="card-title" style="color: white;">Weather forecast</h5></div>
     <div class="card-body">
         <button type="button" class="btn btn-danger" (click)="closeDetails()">Close details</button>
       <hr/>
-      <span class="card-text">Sunset time: {{detailedWeather.sunset_time}}</span><br/>
-      <span class="card-text">Temperature feels like: {{detailedWeather.temp_feels_like}}°C</span><br/>
-      <span class="card-text">Longitude: {{detailedWeather.coord.lon}}°</span><br/>
-      <span class="card-text">Latitude: {{detailedWeather.coord.lat}}°</span><br/>
-      <span class="card-text">Wind speed: {{detailedWeather.wind.speed}} K/h</span><br/>
-      <span class="card-text">Wind angle: {{detailedWeather.wind.deg}}°</span><br/>
+      <div class="row">
+        <div class="card col-4 cd">
+          <div class="card-header">
+            Holnap
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">{{forecastDataInformation.timezone}}</li>
+            <li class="list-group-item">{{forecastDataInformation.daily[0].temp.day}}</li>
+            <li class="list-group-item">Vestibulum at eros</li>
+          </ul>
+        </div>
+  
+        <div class="card col-4 cd">
+          <div class="card-header">
+            Holnap Után
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">{{forecastDataInformation.timezone}}</li>
+            <li class="list-group-item">Dapibus ac facilisis in</li>
+            <li class="list-group-item">Vestibulum at eros</li>
+          </ul>
+        </div>
+  
+        <div class="card col-4 cd">
+          <div class="card-header">
+            Két nap múlva
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">{{forecastDataInformation.timezone}}</li>
+            <li class="list-group-item">Dapibus ac facilisis in</li>
+            <li class="list-group-item">Vestibulum at eros</li>
+          </ul>
+        </div>
+      </div>
       
     </div>
-  </div>
+</div>
+

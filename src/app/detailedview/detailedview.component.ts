@@ -36,20 +36,22 @@ export class DetailedviewComponent implements OnInit {
   constructor( private getForecast: DetailedWeatherService ) { }
 
   ngOnInit(): void {
-    this.locationCoords.forEach(city=>{
-      console.log(city);
-      
-    })
-
-    
+    //this.forecastDataInformation = this.getForecast.getForecastDetails({longitude: 21.63, latitude: 47.53, city: 'Debrecen'});
     this.doRender = false;
   }
 
-  async onIDChange(newCoordinates: coordinates){
+  onIDChange(newCoordinates: coordinates){
     console.log(newCoordinates);
+    //this.forecastDataInformation = this.getForecast.getForecastDetails(newCoordinates);
+    //console.log(this.getForecast.getForecastDetails({longitude: 21.63, latitude: 47.53, city: 'Debrecen'}))
+    if(newCoordinates.latitude && newCoordinates.longitude){
+      this.getForecast.getForecastDetails(newCoordinates).then(data=>{
+        this.forecastDataInformation = data;
+      })
+    }
 
     console.log(this.forecastDataInformation);
-
+    this.doRender = true;
     //console.log(newCoordinates);
     //this.detailedWeatherDataArray = this.getForecast.getForecastDetails(newCoordinates);
     //console.log(this.detailedWeatherDataArray)
