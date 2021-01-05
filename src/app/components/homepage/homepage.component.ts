@@ -13,7 +13,7 @@ export class HomepageComponent implements OnInit {
   locationIDs = [3054638, 721472, 715429, 4119617];
   weatherDataArray: Location[] = [];
   @ViewChild('details') parent: ElementRef
-  idToPass: number = 0;
+  coordinatesToPass: object = {};
 
   constructor(private weatherDataService: WeatherDataService, private renderer: Renderer2) { }
 
@@ -21,9 +21,8 @@ export class HomepageComponent implements OnInit {
     this.weatherDataArray = this.weatherDataService.getWeatherData(this.locationIDs);
   }
 
-  async getDetails(weatherDataID) {
-    console.log('emission start');
-    this.idToPass = weatherDataID;
+  async getDetails(weatherData) {
+    this.coordinatesToPass = {longitude: weatherData.coord.lon, latitude: weatherData.coord.lat, city: weatherData.name};
   }
 
 }
