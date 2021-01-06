@@ -1,5 +1,5 @@
 <div class="locations">
-    <div *ngFor="let weatherData of weatherDataArray" class="weather-container" (click)="getDetails(weatherData)">
+    <div *ngFor="let weatherData of weatherDataArray" class="weather-container" id="{{weatherData.name}}_id" (click)="getDetails(weatherData, $event)">
         <div *ngIf="weatherData.isDay" class="weather-widget-row">
             <i class="fas fa-3x fa-sun sun"></i>
         </div>
@@ -19,5 +19,5 @@
 </div>
 
 <div class="details" #details>
-    <app-detailedview [details] = "this.coordinatesToPass"></app-detailedview>
+    <app-detailedview [details] = "this.coordinatesToPass" (selectedFrameEmitter)="selectFrame($event)"></app-detailedview>
 </div>

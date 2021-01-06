@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { DetailedWeatherService } from '../services/detailed-weather-data.service';
 import { Location } from '../interfaces/location';
 import { coordinates } from '../interfaces/coordinates';
@@ -33,6 +33,8 @@ export class DetailedviewComponent implements OnInit {
     this._coordinates = value;
     this.onIDChange(value);
   }
+
+  @Output() selectedFrameEmitter = new EventEmitter();
 
   constructor(private getForecast: DetailedWeatherService) { }
 
@@ -74,6 +76,7 @@ export class DetailedviewComponent implements OnInit {
       }
 
       this.doRender = true;
+      this.selectedFrameEmitter.emit(newCoordinates.city);
 
     }
   }
