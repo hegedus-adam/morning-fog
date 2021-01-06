@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { DetailedWeatherService } from '../services/detailed-weather-data.service';
 import { Location } from '../interfaces/location';
 import { coordinates } from '../interfaces/coordinates';
+import { forecastPool } from '../interfaces/forecast';
 
 @Component({
   selector: 'app-detailedview',
@@ -11,19 +12,20 @@ import { coordinates } from '../interfaces/coordinates';
 })
 export class DetailedviewComponent implements OnInit {
   private _coordinates: coordinates;
-  detailedWeather:object = {};
+  detailedWeather: object = {};
   detailedWeatherDataArray: Location[] = [];
-  forecastDataInformation = [];
-  //locationIDs = [3054638, 721472, 715429, 4119617];
-  locationCoords = [
-    {longitude: 19.08, latitude: 47.5, city: 'Budapest'}, 
-    {longitude: 21.63, latitude: 47.53, city: 'Debrecen'}, 
-    {longitude: 20.15, latitude: 46.25, city: 'Szeged'}, 
-    {longitude: -93.25, latitude: 35.33, city: 'London'}
-  ]
-  doRender:boolean;
+  forecastDataInformation = {
+    daily: []
+  };
+  forecast: forecastPool = {
+    tomorrow: { temperature: 0, feelsLike: 0, humidity: 0 },
+    dayAfter: { temperature: 0, feelsLike: 0, humidity: 0 },
+    twoDayAfter: { temperature: 0, feelsLike: 0, humidity: 0 },
+  };
+  doRender: boolean;
 
-  @Input() 
+
+  @Input()
   get details() {
     return this._coordinates
   }
@@ -31,41 +33,61 @@ export class DetailedviewComponent implements OnInit {
     this._coordinates = value;
     this.onIDChange(value);
   }
-  
 
-  constructor( private getForecast: DetailedWeatherService ) { }
+  constructor(private getForecast: DetailedWeatherService) { }
 
   ngOnInit(): void {
     //this.forecastDataInformation = this.getForecast.getForecastDetails({longitude: 21.63, latitude: 47.53, city: 'Debrecen'});
     this.doRender = false;
   }
 
-  onIDChange(newCoordinates: coordinates){
-    console.log(newCoordinates);
-    //this.forecastDataInformation = this.getForecast.getForecastDetails(newCoordinates);
-    //console.log(this.getForecast.getForecastDetails({longitude: 21.63, latitude: 47.53, city: 'Debrecen'}))
-    if(newCoordinates.latitude && newCoordinates.longitude){
-      this.getForecast.getForecastDetails(newCoordinates).then(data=>{
+  onIDChange(newCoordinates: coordinates) {
+    if (newCoordinates.latitude && newCoordinates.longitude) {
+      this.getForecast.getForecastDetails(newCoordinates).then(data => {
         this.forecastDataInformation = data;
       })
     }
 
     console.log(this.forecastDataInformation);
-    this.doRender = true;
-    //console.log(newCoordinates);
-    //this.detailedWeatherDataArray = this.getForecast.getForecastDetails(newCoordinates);
-    //console.log(this.detailedWeatherDataArray)
-    /*
-    if(this.locationIDs.includes(weatherDataID)){
-      let showDetailOf = this.detailedWeatherDataArray.filter(location => location.id === weatherDataID)
-      let details = showDetailOf[0];
-      this.detailedWeather = details;
+
+    if (!isEmptyObject(this.forecastDataInformation) && this.forecastDataInformation.daily.length > 3) {
+      for (let key in this.forecast) {
+        let dayIndex: number = 0;
+
+        switch (key) {
+          case 'dayAfter':
+            dayIndex = 1;
+            break;
+          case 'twoDayAfter':
+            dayIndex = 2
+            break;
+          default:
+            dayIndex = 0;
+            break;
+        }
+
+        this.forecast[key] = {
+          temperature: (this.forecastDataInformation.daily[dayIndex].temp.day - 273.15).toFixed(0),
+          feelsLike: (this.forecastDataInformation.daily[dayIndex].feels_like.day - 273.15).toFixed(0),
+          humidity: this.forecastDataInformation.daily[dayIndex].humidity
+        }
+      }
+
       this.doRender = true;
+
     }
-    */
   }
 
-  closeDetails(){
+  closeDetails() {
     this.doRender = false;
+  }
+}
+
+const isEmptyObject = (obj: object) => {
+  for (let property in obj) {
+    if (obj.hasOwnProperty(property)) {
+      return false;
+    }
+    return JSON.stringify(obj) === JSON.stringify({});
   }
 }
