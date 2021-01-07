@@ -79,6 +79,7 @@ export class DetailedviewComponent implements OnInit {
 
   closeDetails() {
     this.doRender = false;
+    this.selectedFrameEmitter.emit('close');
   }
 }
 

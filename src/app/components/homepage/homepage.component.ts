@@ -28,22 +28,31 @@ export class HomepageComponent implements OnInit {
     console.log(event.target.id)
     if (event.target.id) {
 
-      let weather_nodes = document.querySelectorAll('.weather-container');
+      this.clearAllSelected();
+        
+      document.getElementById(event.target.id).classList.add('selected');
+
+    }
+
+  }
+
+  clearAllSelected(){
+    let weather_nodes = document.querySelectorAll('.weather-container');
       console.log('______________________')
+      
       weather_nodes.forEach(node => {
         console.log(node.id, document.getElementById(node.id).classList.contains('selected'))
         if (document.getElementById(node.id).classList.contains('selected')) {
           document.getElementById(node.id).classList.remove('selected');
         }
       });
-      
-      document.getElementById(event.target.id).classList.add('selected');
-    }
-
   }
 
   selectFrame(eventDetails) {
-    this.selectedCity = eventDetails;
+    if(eventDetails !== 'close'){
+      this.selectedCity = eventDetails;
+    }else{
+      this.clearAllSelected();
+    }
   }
-
 }
