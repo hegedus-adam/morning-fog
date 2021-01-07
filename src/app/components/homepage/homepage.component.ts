@@ -24,24 +24,25 @@ export class HomepageComponent implements OnInit {
 
   async getDetails(weatherData, event) {
     this.coordinatesToPass = { longitude: weatherData.coord.lon, latitude: weatherData.coord.lat, city: weatherData.name };
-    console.log('STEP I > get details button fired creating new coordinates ' + JSON.stringify(this.coordinatesToPass));
+    console.log('-----------------------')
+    console.log(event.target.id)
     if (event.target.id) {
 
       let weather_nodes = document.querySelectorAll('.weather-container');
-
+      console.log('______________________')
       weather_nodes.forEach(node => {
+        console.log(node.id, document.getElementById(node.id).classList.contains('selected'))
         if (document.getElementById(node.id).classList.contains('selected')) {
           document.getElementById(node.id).classList.remove('selected');
         }
       });
-      console.log('STEP I.B > City ' + event.target.id + ' is selected');
+      
       document.getElementById(event.target.id).classList.add('selected');
     }
 
   }
 
   selectFrame(eventDetails) {
-    console.log('STEP IV > Selectable city is ' + eventDetails);
     this.selectedCity = eventDetails;
   }
 

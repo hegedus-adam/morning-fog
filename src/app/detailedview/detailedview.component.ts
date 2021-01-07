@@ -42,12 +42,10 @@ export class DetailedviewComponent implements OnInit {
   }
 
   onIDChange(newCoordinates: coordinates) {
-    console.log('STEP II. > received coordinates' + JSON.stringify(newCoordinates));
     if (newCoordinates.latitude && newCoordinates.longitude) {
       this.getForecast.getForecastDetails(newCoordinates).then(data => {
         this.forecastDataInformation = data;
-        console.log('STEP II.B > set forecast data to ' + '{api_json_return}')
-        
+
         if (!isEmptyObject(this.forecastDataInformation) && this.forecastDataInformation.daily.length > 3) {
           for (let key in this.forecast) {
             let dayIndex: number = 0;
@@ -74,9 +72,6 @@ export class DetailedviewComponent implements OnInit {
       })
     }
 
-
-
-    console.log("STEP III. > allowing render, emitting city parameter for frame selector " + newCoordinates.city)
     this.doRender = true;
     this.selectedFrameEmitter.emit(newCoordinates.city);
 
