@@ -46,34 +46,36 @@ export class DetailedviewComponent implements OnInit {
     if (newCoordinates.latitude && newCoordinates.longitude) {
       this.getForecast.getForecastDetails(newCoordinates).then(data => {
         this.forecastDataInformation = data;
+        console.log('STEP II.B > set forecast data to ' + '{api_json_return}')
+        
+        if (!isEmptyObject(this.forecastDataInformation) && this.forecastDataInformation.daily.length > 3) {
+          for (let key in this.forecast) {
+            let dayIndex: number = 0;
+
+            switch (key) {
+              case 'dayAfter':
+                dayIndex = 1;
+                break;
+              case 'twoDayAfter':
+                dayIndex = 2
+                break;
+              default:
+                dayIndex = 0;
+                break;
+            }
+
+            this.forecast[key] = {
+              temperature: (this.forecastDataInformation.daily[dayIndex].temp.day - 273.15).toFixed(0),
+              feelsLike: (this.forecastDataInformation.daily[dayIndex].feels_like.day - 273.15).toFixed(0),
+              humidity: this.forecastDataInformation.daily[dayIndex].humidity
+            }
+          }
+        }
       })
     }
 
 
-    if (JSON.stringify(this.forecastDataInformation) !== '{}' && this.forecastDataInformation.daily.length > 3) {
-      for (let key in this.forecast) {
-        let dayIndex: number = 0;
 
-        switch (key) {
-          case 'dayAfter':
-            dayIndex = 1;
-            break;
-          case 'twoDayAfter':
-            dayIndex = 2
-            break;
-          default:
-            dayIndex = 0;
-            break;
-        }
-
-        this.forecast[key] = {
-          temperature: (this.forecastDataInformation.daily[dayIndex].temp.day - 273.15).toFixed(0),
-          feelsLike: (this.forecastDataInformation.daily[dayIndex].feels_like.day - 273.15).toFixed(0),
-          humidity: this.forecastDataInformation.daily[dayIndex].humidity
-        }
-      }
-
-    }
     console.log("STEP III. > allowing render, emitting city parameter for frame selector " + newCoordinates.city)
     this.doRender = true;
     this.selectedFrameEmitter.emit(newCoordinates.city);

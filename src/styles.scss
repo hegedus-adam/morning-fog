@@ -3,6 +3,8 @@ body{
     background-image: url('./assets/wallpaper.jpg');
     background-repeat: no-repeat;
     background-size: cover;
+    width: 100% !important;
+    height: 100% !important;
     user-select: none;
 }
 
@@ -47,5 +49,5 @@ body{
 }
 
 .selected{
-    border: 2px solid red;
+    border: 3px dashed rgb(255, 123, 0);
 }

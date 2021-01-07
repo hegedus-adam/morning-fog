@@ -34,7 +34,7 @@ export class HomepageComponent implements OnInit {
           document.getElementById(node.id).classList.remove('selected');
         }
       });
-      console.log('STEP V > City ' + event.target.id + ' is selected');
+      console.log('STEP I.B > City ' + event.target.id + ' is selected');
       document.getElementById(event.target.id).classList.add('selected');
     }
 
