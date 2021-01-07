@@ -6,7 +6,6 @@ import { forecastPool } from '../interfaces/forecast';
 
 @Component({
   selector: 'app-detailedview',
-  //template: '<h1> Hello world </h1>',
   templateUrl: './detailedview.component.html',
   styleUrls: ['./detailedview.component.scss']
 })
@@ -39,20 +38,19 @@ export class DetailedviewComponent implements OnInit {
   constructor(private getForecast: DetailedWeatherService) { }
 
   ngOnInit(): void {
-    //this.forecastDataInformation = this.getForecast.getForecastDetails({longitude: 21.63, latitude: 47.53, city: 'Debrecen'});
     this.doRender = false;
   }
 
   onIDChange(newCoordinates: coordinates) {
+    console.log('STEP II. > received coordinates' + JSON.stringify(newCoordinates));
     if (newCoordinates.latitude && newCoordinates.longitude) {
       this.getForecast.getForecastDetails(newCoordinates).then(data => {
         this.forecastDataInformation = data;
       })
     }
 
-    console.log(this.forecastDataInformation);
 
-    if (!isEmptyObject(this.forecastDataInformation) && this.forecastDataInformation.daily.length > 3) {
+    if (JSON.stringify(this.forecastDataInformation) !== '{}' && this.forecastDataInformation.daily.length > 3) {
       for (let key in this.forecast) {
         let dayIndex: number = 0;
 
@@ -75,10 +73,11 @@ export class DetailedviewComponent implements OnInit {
         }
       }
 
-      this.doRender = true;
-      this.selectedFrameEmitter.emit(newCoordinates.city);
-
     }
+    console.log("STEP III. > allowing render, emitting city parameter for frame selector " + newCoordinates.city)
+    this.doRender = true;
+    this.selectedFrameEmitter.emit(newCoordinates.city);
+
   }
 
   closeDetails() {
