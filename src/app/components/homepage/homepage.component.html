@@ -1,5 +1,7 @@
+<h1 class="title">Weather Application</h1>
+
 <div class="locations">
-    <div *ngFor="let weatherData of weatherDataArray" class="weather-container" id="{{weatherData.name}}_id" (click)="getDetails(weatherData, $event)">
+    <div *ngFor="let weatherData of weatherDataArray" class="weather-container">
         <div *ngIf="weatherData.isDay" class="weather-widget-row">
             <i class="fas fa-3x fa-sun sun"></i>
         </div>

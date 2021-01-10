@@ -24,8 +24,6 @@ export class HomepageComponent implements OnInit {
 
   async getDetails(weatherData, event) {
     this.coordinatesToPass = { longitude: weatherData.coord.lon, latitude: weatherData.coord.lat, city: weatherData.name };
-    console.log('-----------------------')
-    console.log(event.target.id)
     if (event.target.id) {
 
       this.clearAllSelected();
@@ -38,10 +36,7 @@ export class HomepageComponent implements OnInit {
 
   clearAllSelected(){
     let weather_nodes = document.querySelectorAll('.weather-container');
-      console.log('______________________')
-      
       weather_nodes.forEach(node => {
-        console.log(node.id, document.getElementById(node.id).classList.contains('selected'))
         if (document.getElementById(node.id).classList.contains('selected')) {
           document.getElementById(node.id).classList.remove('selected');
         }
