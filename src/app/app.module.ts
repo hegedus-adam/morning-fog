@@ -4,17 +4,24 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomepageComponent } from './components/homepage/homepage.component';
+import { DetailedWeatherService} from './services/detailed-weather-data.service';
+import { AboutpageComponent } from './components/aboutpage/aboutpage.component';
+import { NavigationComponent } from './components/navigation/navigation.component';
+import { DetailedviewComponent } from './detailedview/detailedview.component'; 
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomepageComponent
+    HomepageComponent,
+    AboutpageComponent,
+    NavigationComponent,
+    DetailedviewComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [DetailedWeatherService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
