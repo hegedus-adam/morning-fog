@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { DetailedWeatherService } from '../services/detailed-weather-data.service';
 import { Location } from '../interfaces/location';
-import { coordinates } from '../interfaces/coordinates';
+import { Coordinates } from '../interfaces/coordinates';
 import { forecastPool } from '../interfaces/forecast';
 
 @Component({
@@ -10,7 +10,7 @@ import { forecastPool } from '../interfaces/forecast';
   styleUrls: ['./detailedview.component.scss']
 })
 export class DetailedviewComponent implements OnInit {
-  private _coordinates: coordinates;
+  private _coordinates: Coordinates;
   detailedWeather: object = {};
   detailedWeatherDataArray: Location[] = [];
   forecastDataInformation = {
@@ -28,7 +28,7 @@ export class DetailedviewComponent implements OnInit {
   get details() {
     return this._coordinates
   }
-  set details(value: coordinates) {
+  set details(value: Coordinates) {
     this._coordinates = value;
     this.onIDChange(value);
   }
@@ -41,7 +41,7 @@ export class DetailedviewComponent implements OnInit {
     this.doRender = false;
   }
 
-  onIDChange(newCoordinates: coordinates) {
+  onIDChange(newCoordinates: Coordinates) {
     if (newCoordinates.latitude && newCoordinates.longitude) {
       this.getForecast.getForecastDetails(newCoordinates).then(data => {
         this.forecastDataInformation = data;

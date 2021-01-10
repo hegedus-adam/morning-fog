@@ -1,5 +1,5 @@
-export interface coordinates{
-    longitude: number, 
-    latitude: number,
-    city: string
+export interface Coordinates {
+  longitude: number
+  latitude: number
+  city: string
 }

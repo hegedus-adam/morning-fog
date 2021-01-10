@@ -1,69 +1,69 @@
 .title {
-    display: flex;
-    margin: 12px auto 40px;
-    justify-content: center;
+  display: flex;
+  margin: 12px auto 40px;
+  justify-content: center;
 }
 
 .locations {
-    display: flex;
-    flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .weather-container {
-    display: block;
-    margin: 20px auto;
-    border-radius: 10px;
-    width: 200px;
-    height: 220px;
-    background-color: #000000;
-    background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(8,7,42,1) 100%);
-    color: white;
+  display: block;
+  margin: 20px auto;
+  border-radius: 10px;
+  width: 200px;
+  height: 220px;
+  background-color: #000000;
+  background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(8,7,42,1) 100%);
+  color: white;
 }
 
 .weather-widget-row {
-    display: block;
-    margin: 0 auto;
-    width: fit-content;
-    font-size: 12px;
+  display: block;
+  margin: 0 auto;
+  width: fit-content;
+  font-size: 12px;
 
-    &.main-temp {
-        font-size: 32px;
-        margin-top: 5px;
-    }
+  &.main-temp {
+      font-size: 32px;
+      margin-top: 5px;
+  }
 
-    &.city-name {
-        font-size: 25px;
-        margin-top: 10px;
-    }
+  &.city-name {
+      font-size: 25px;
+      margin-top: 10px;
+  }
 }
 
 .sun {
-    margin-top: 10px;
-    color: yellow;
-    filter: drop-shadow(1px 1px 10px yellow);
+  margin-top: 10px;
+  color: yellow;
+  filter: drop-shadow(1px 1px 10px yellow);
 }
 
 .moon {
-    margin-top: 10px;
-    color: white;
-    filter: drop-shadow(1px 1px 10px white);
+  margin-top: 10px;
+  color: white;
+  filter: drop-shadow(1px 1px 10px white);
 }
 
 .cloud-container {
-    margin-top: -30px;
+  margin-top: -30px;
 }
 
 .cloud {
-    color: rgb(104, 175, 197);
-    filter: drop-shadow(1px 1px 5px rgb(104, 175, 197));
-    animation-name: cloudMovement;
-    animation-iteration-count: infinite;
-    animation-duration: 10s;
-    animation-timing-function: ease-in-out;
-    animation-direction: alternate;
+  color: rgb(104, 175, 197);
+  filter: drop-shadow(1px 1px 5px rgb(104, 175, 197));
+  animation-name: cloudMovement;
+  animation-iteration-count: infinite;
+  animation-duration: 10s;
+  animation-timing-function: ease-in-out;
+  animation-direction: alternate;
 }
 
-@keyframes cloudMovement{
-    from {margin-left: -25px;}
-    to {margin-left: 45px;}
+@keyframes cloudMovement {
+  from {margin-left: -25px;}
+  to {margin-left: 45px;}
 }

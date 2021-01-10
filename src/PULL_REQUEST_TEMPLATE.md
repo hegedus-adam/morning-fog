@@ -1,1 +1,1 @@
-/review @hegedus-adam @venlev
+/review @hegedus-adam
