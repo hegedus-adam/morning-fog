@@ -1,25 +1,26 @@
 <h1 class="title">Weather Application</h1>
 
 <div class="locations">
-    <div *ngFor="let weatherData of weatherDataArray" class="weather-container">
-        <div *ngIf="weatherData.isDay" class="weather-widget-row">
-            <i class="fas fa-3x fa-sun sun"></i>
-        </div>
-        <div *ngIf="!weatherData.isDay" class="weather-widget-row">
-            <i class="fas fa-3x fa-moon moon"></i>
-        </div>
-        <div class="weather-widget-row cloud-container">
-            <i class="fas fa-cloud fa-3x cloud"></i>
-        </div>
-        <div class="weather-widget-row main-temp">{{weatherData.temp_celsius}}°</div>
-        <div class="weather-widget-row">{{weatherData.temp_min}}° / {{weatherData.temp_max}}°</div>
-        <div class="weather-widget-row">Feels like: {{weatherData.temp_feels_like}}°</div>
-        <div class="weather-widget-row city-name">{{weatherData.name}}</div>
-        <div class="weather-widget-row">Humidity: {{weatherData.main.humidity}}%</div>
-        <div class="weather-widget-row"></div>
+  <div *ngFor="let weatherData of weatherDataArray" class="weather-container">
+    <div *ngIf="weatherData.isDay" class="weather-widget-row">
+      <i class="fas fa-3x fa-sun sun"></i>
     </div>
+    <div *ngIf="!weatherData.isDay" class="weather-widget-row">
+      <i class="fas fa-3x fa-moon moon"></i>
+    </div>
+    <div class="weather-widget-row cloud-container">
+      <i class="fas fa-cloud fa-3x cloud"></i>
+    </div>
+    <div class="weather-widget-row main-temp">{{weatherData.temp_celsius}}°</div>
+    <div class="weather-widget-row">{{weatherData.temp_min}}° / {{weatherData.temp_max}}°</div>
+    <div class="weather-widget-row">Feels like: {{weatherData.temp_feels_like}}°</div>
+    <div class="weather-widget-row city-name">{{weatherData.name}}</div>
+    <div class="weather-widget-row">Humidity: {{weatherData.main.humidity}}%</div>
+    <div class="weather-widget-row"></div>
+  </div>
 </div>
 
 <div class="details" #details>
-    <app-detailedview [details] = "this.coordinatesToPass" (selectedFrameEmitter)="selectFrame($event)"></app-detailedview>
+  <app-detailedview [details]="this.coordinatesToPass" (selectedFrameEmitter)="selectFrame($event)">
+  </app-detailedview>
 </div>

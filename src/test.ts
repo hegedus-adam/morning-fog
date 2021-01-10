@@ -5,7 +5,7 @@ import { getTestBed } from '@angular/core/testing';
 import {
   BrowserDynamicTestingModule,
   platformBrowserDynamicTesting
-} from '@angular/platform-browser-dynamic/testing';
+} from '@angular/platform-browser-dynamic/testing';s
 
 declare const require: {
   context(path: string, deep?: boolean, filter?: RegExp): {

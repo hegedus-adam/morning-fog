@@ -8,9 +8,9 @@ describe('DetailedviewComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DetailedviewComponent ]
+      declarations: [DetailedviewComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

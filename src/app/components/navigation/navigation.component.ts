@@ -1,11 +1,11 @@
 import { Component } from "@angular/core";
 
 @Component({
-    selector: 'navigation-component',
-    templateUrl: './navigation.component.html'
+  selector: 'navigation-component',
+  templateUrl: './navigation.component.html'
 })
-export class NavigationComponent{
-    reloadToPreventBugging(){
-        window.location.href = '/home';
-    }
+export class NavigationComponent {
+  reloadToPreventBugging() {
+    window.location.href = '/home';
+  }
 }
